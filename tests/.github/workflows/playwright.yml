@@ -36,8 +36,7 @@ jobs:
         path: playwright-report/
 
     - name: Send Slack Notification
-      if: always()
       run: |
         curl -X POST -H 'Content-type: application/json' \
-        --data '{"text":"🚀 Hello from GitHub Actions"}' \
-        ${{ secrets.SLACK_WEBHOOK }}
+          --data '{"text":"🚀 Playwright CI is working!"}' \
+          ${{ secrets.SLACK_WEBHOOK }}
