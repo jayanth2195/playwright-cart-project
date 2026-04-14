@@ -36,15 +36,11 @@ jobs:
         path: playwright-report/
 
     - name: Send Slack Notification
-      if: always()
       run: |
-        if [ "${{ job.status }}" = "success" ]; then
-          MESSAGE="✅ Playwright Tests Passed"
-        else
-          MESSAGE="❌ Playwright Tests Failed"
-        fi
-        curl -X POST -H "Content-type: application/json" \
-          --data "{\"text\":\"$MESSAGE\"}" \
+        echo "Sending Slack message..."
+        echo "Webhook: ${{ secrets.SLACK_WEBHOOK }}"
+        curl -v -X POST -H "Content-type: application/json" \
+          --data '{"text":"🚀 Slack test from GitHub"}' \
           ${{ secrets.SLACK_WEBHOOK }}
 
     - name: Debug Secret
